@@ -46,6 +46,7 @@ lib/libgnustl_shared.so
 # RIL
 etc/plmn_delta.bin
 etc/plmn_se13.bin
+lib/libaudio-ril.so:vendor/lib/libaudio-ril.so
 
 # Samsung Exynos5 SoC series FIMC-IS driver firmware
 vendor/firmware/fimc_is_fw2_3L2.bin

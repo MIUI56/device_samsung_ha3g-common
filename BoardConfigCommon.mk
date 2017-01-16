@@ -32,6 +32,14 @@ TARGET_SCREEN_DENSITY := 480
 BOARD_CAMERA_FRONT_ROTATION := 270
 BOARD_CAMERA_BACK_ROTATION := 90
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+BOARD_NEEDS_MEMORYHEAPION := true
+BOARD_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
+
+# Mixer
+BOARD_USE_BGRA_8888 := true
+
+# HDMI
+BOARD_USES_GSC_VIDEO := true
 
 # Battery
 RED_LED_PATH := "/sys/class/leds/led_r/brightness" 
@@ -46,13 +54,11 @@ TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_LD_SHIM_LIBS += \
     /vendor/bin/gpsd|/vendor/lib/libshim_dmitry_gps.so \
    /system/vendor/lib/libsec-ril.so|libshim_atomic.so \
- /system/vendor/lib/libsensorhub.so|libshim_binder.so \
-/system/vendor/lib/libsec-ril.so|/vendor/lib/libcutils_shim.so
-
+   /system/vendor/lib/libsec-ril.so|/vendor/lib/libcutils_shim.so
 
 # HIDL
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
-
+BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 
 # Inherit from the proprietary version
 -include vendor/samsung/ha3g-common/BoardConfigVendor.mk
