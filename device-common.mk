@@ -14,9 +14,8 @@
 # limitations under the License.
 #
 
-PRODUCT_CHARACTERISTICS := tablet
 
-DEVICE_PATH := device/samsung/n1a-common
+DEVICE_PATH := device/samsung/ha3g-common
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
@@ -25,7 +24,7 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     device/samsung/n1a-common/overlay/hardware/samsung/AdvancedDisplay
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := xlarge
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
@@ -44,11 +43,15 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_0.xml
+    $(DEVICE_PATH)/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_0.xml \
+    $(DEVICE_PATH)/configs/audio/ysound.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ysound.xml \
+    $(DEVICE_PATH)/configs/audio/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
+    $(DEVICE_PATH)/configs/audio/audio_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy.conf \
+    $(DEVICE_PATH)/configs/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2560
-TARGET_SCREEN_WIDTH := 1600
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
 
 # Key-layout
 PRODUCT_COPY_FILES += \
@@ -65,7 +68,29 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_dmitry_gps
+libshim_dmitry_gps \
+    libshim_atomic \
+    libcutils_shim \
+    libshim_binder
+    
+ # Macloader
+ PRODUCT_PACKAGES += \
+     macloader
+     
+# GPS
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gps.xml \
+    $(DEVICE_PATH)/configs/gps/gps.cer:$(TARGET_COPY_OUT_VENDOR)/bin/gps.cer     
+        
+
+ # Camera
+ PRODUCT_PACKAGES += \
+     libhwjpeg \
+     libsecnativefeature 
+     
+# libstlport
+ PRODUCT_PACKAGES += \
+     libstlport     
 
 # Shipping API level
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_k.mk)
@@ -74,4 +99,4 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_k.mk)
 $(call inherit-product, device/samsung/universal5420-common/device-common.mk)
 
 # call the proprietary setup
-$(call inherit-product-if-exists, vendor/samsung/n1a-common/n1a-common-vendor.mk)
+$(call inherit-product, vendor/samsung/n1a-common/ha3g-common-vendor.mk)

@@ -27,3 +27,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.disable=1 \
     audio_hal.disable_two_mic=true
+
+# ADB Enable ADB Debugging By Default & Disable USB Debugging 
+# Popup
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.service.adb.enable=1 \
+    persist.service.debuggable=1 \
+   persist.sys.usb.config=adb \
+   ro.adb.secure=0 \
+  ro.secure=0
+                    	
+     # adb
+    PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.service.adb.enable=1 \
+   ro.debuggable=1 \
+   ro.debug_level=0x4948

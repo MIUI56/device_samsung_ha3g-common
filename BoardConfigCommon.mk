@@ -17,7 +17,7 @@
 # Inherit from universal5420-common
 include device/samsung/universal5420-common/BoardConfigCommon.mk
 
-DEVICE_PATH := device/samsung/n1a-common
+DEVICE_PATH := device/samsung/ha3g-common
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
@@ -26,14 +26,33 @@ TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Display
-TARGET_SCREEN_DENSITY := 320
+TARGET_SCREEN_DENSITY := 480
+
+# Camera: portrait orientation
+BOARD_CAMERA_FRONT_ROTATION := 270
+BOARD_CAMERA_BACK_ROTATION := 90
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+
+# Battery
+RED_LED_PATH := "/sys/class/leds/led_r/brightness" 
+GREEN_LED_PATH := "/sys/class/leds/led_g/brightness" 
+BLUE_LED_PATH := "/sys/class/leds/led_b/brightness" 
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+
+# Audio blobs
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+
+# Shims
+TARGET_LD_SHIM_LIBS += \
+    /vendor/bin/gpsd|/vendor/lib/libshim_dmitry_gps.so \
+   /system/vendor/lib/libsec-ril.so|libshim_atomic.so \
+ /system/vendor/lib/libsensorhub.so|libshim_binder.so \
+/system/vendor/lib/libsec-ril.so|/vendor/lib/libcutils_shim.so
+
 
 # HIDL
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
-# Shims
-TARGET_LD_SHIM_LIBS += \
-    /vendor/bin/gpsd|/vendor/lib/libshim_dmitry_gps.so
 
 # Inherit from the proprietary version
--include vendor/samsung/n1a-common/BoardConfigVendor.mk
+-include vendor/samsung/ha3g-common/BoardConfigVendor.mk

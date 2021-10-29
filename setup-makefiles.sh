@@ -16,7 +16,7 @@
 set -e
 
 VENDOR=samsung
-DEVICE_COMMON=n1a-common
+DEVICE_COMMON=ha3g-common
 
 export INITIAL_COPYRIGHT_YEAR=2017
 
