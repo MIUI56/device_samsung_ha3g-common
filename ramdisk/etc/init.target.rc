@@ -9,18 +9,20 @@ on boot
     # Bluetooth Keyboard
     chown system radio /sys/class/input/input11/enabled
     chmod 0660 /sys/class/input/input11/enabled
-
-    # Headphones (Headset)
-    chown system system /sys/class/input/input10/enabled
-    chmod 0660 /sys/class/input/input10/enabled
+    
+    # headphone
+    chown system system /sys/class/input/input11/enabled
+    chmod 0660 /sys/class/input/input11/enabled
+    chown system system /sys/class/input/input12/enabled
+    chmod 0660 /sys/class/input/input12/enabled
 
     # S-Pen (sec_e-pen)
     chown system system /sys/class/input/input9/enabled
     chmod 0660 /sys/class/input/input9/enabled
 
     # Physical Home Button (gpio-keys)
-    chown system system /sys/class/input/input8/enabled
-    chmod 0660 /sys/class/input/input8/enabled
+    chown system system /sys/class/input/input13/enabled
+    chmod 0660 /sys/class/input/input13/enabled
 
     # Light Sensor
     chown system system /sys/class/input/input7/enabled
@@ -43,9 +45,43 @@ on boot
     chown system system /sys/class/input/input3/enabled
     chmod 0660 /sys/class/input/input3/enabled
 
-    # Touchscreen (sec_touchscreen)
+
+# Permissions for Touchkey
+    chown system system /sys/class/input/input14/enabled
+    chmod 0660 /sys/class/input/input14/enabled
+
+# Permissions for sensors
     chown system system /sys/class/input/input2/enabled
     chmod 0660 /sys/class/input/input2/enabled
+    chown system system /sys/class/input/input3/enabled
+    chmod 0660 /sys/class/input/input3/enabled
+    chown system system /sys/class/input/input4/enabled
+    chmod 0660 /sys/class/input/input4/enabled
+    chown system system /sys/class/input/input5/enabled
+    chmod 0660 /sys/class/input/input5/enabled
+    chown system system /sys/class/input/input6/enabled
+    chmod 0660 /sys/class/input/input6/enabled
+    chown system system /sys/class/input/input7/enabled
+    chmod 0660 /sys/class/input/input7/enabled
+    chown system system /sys/class/input/input8/enabled
+    chmod 0660 /sys/class/input/input8/enabled
+    chown system system /sys/class/input/input9/enabled
+    chmod 0660 /sys/class/input/input9/enabled
+    chown system system /sys/class/input/input10/enabled
+    chmod 0660 /sys/class/input/input10/enabled
+
+# Accelerometer_sensor
+    chown system radio /sys/class/sensors/accelerometer_sensor/selftest
+
+# Temphumidity_sensor
+    chown system radio /sys/class/sensors/temphumidity_sensor/mcu_batt_adc
+    chown system radio /sys/class/sensors/temphumidity_sensor/mcu_chg_adc
+    chown system radio /sys/class/sensors/temphumidity_sensor/batt_temperature
+    chown system radio /sys/class/sensors/temphumidity_sensor/chg_temperature
+
+# SHTC1 BULK
+    chmod 0600 /dev/shtc1_sensor
+    chown system system /dev/shtc1_sensor
 
     # Micro-USB IC (max77803-muic)
     chown system system /sys/class/input/input0/enabled
@@ -108,12 +144,21 @@ on post-fs-data
     chown system system /sys/class/sec/led/led_br_lev
     chown system system /sys/class/sec/led/led_lowpower 
     
+    
+# Sensorhub service
+service sensorhubservice /system/bin/sensorhubservice
+    class main
+    user system
+    group input
+
+    
+   
    # Epen power saving mode
     write /sys/devices/virtual/sec/sec_epen/epen_saving_mode 1  
      
   on fs
 
-   mount_all /vendor/etc/fstab.universal5420  --early
+   mount_all /vendor/etc/fstab.universal5420  
    swapon_all /vendor/etc/fstab.universal5420
 
 

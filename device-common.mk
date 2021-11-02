@@ -33,9 +33,6 @@ PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
 PRODUCT_PACKAGES += \
     init.target.rc
 
-# AdvancedDisplay (MDNIE)
-PRODUCT_PACKAGES += \
-    AdvancedDisplay
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
