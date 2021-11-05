@@ -113,28 +113,11 @@ on post-fs-data
    mount_all /vendor/etc/fstab.universal5420  --early
    swapon_all /vendor/etc/fstab.universal5420
    
-   # Sensorhub service
-   service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
-
-
-# Broadcom NFC
-    chmod 0600 /dev/bcm2079x
-    chown nfc nfc /dev/bcm2079x
-    mkdir /data/bcmnfc
-    mkdir /data/bcmnfc/param
-    chmod 0700 /data/bcmnfc
-    chmod 0700 /data/bcmnfc/param
-    chown nfc nfc /data/bcmnfc
-    chown nfc nfc /data/bcmnfc/param
-    
 
 # Permission for flashlight control 
   chmod 0660 /sys/class/camera/flash/front_torch_flash
   chown cameraserver system /sys/class/camera/flash/front_torch_flash
           
  # Permissions Camera
-chown system radio /sys/class/camera/flash/front_flash
+   chown system radio /sys/class/camera/flash/front_flash
                     
