@@ -108,11 +108,7 @@ on post-fs-data
    # Epen power saving mode
     write /sys/devices/virtual/sec/sec_epen/epen_saving_mode 1  
      
-  on fs
-
-   mount_all /vendor/etc/fstab.universal5420  --early
-   swapon_all /vendor/etc/fstab.universal5420
-   
+on fs
 
 # Permission for flashlight control 
   chmod 0660 /sys/class/camera/flash/front_torch_flash
@@ -120,4 +116,8 @@ on post-fs-data
           
  # Permissions Camera
    chown system radio /sys/class/camera/flash/front_flash
-                    
+   
+  # Broadcom NFC
+      chmod 0600 /dev/bcm2079x
+      chown nfc nfc /dev/bcm2079x 
+                       
