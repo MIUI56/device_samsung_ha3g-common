@@ -26,13 +26,14 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-# A list of dpis to select prebuilt apk, in precedence order.
-PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
 
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.target.rc
 
+# AdvancedDisplay (MDNIE)
+PRODUCT_PACKAGES += \
+    AdvancedDisplay 
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -78,6 +79,10 @@ libshim_dmitry_gps \
  # Macloader
  PRODUCT_PACKAGES += \
      macloader
+ 
+# SamsungDoze
+PRODUCT_PACKAGES += \
+    SamsungDoze 
      
 # GPS
 PRODUCT_COPY_FILES += \
