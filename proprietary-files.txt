@@ -59,8 +59,8 @@ vendor/firmware/setfile_imx135.bin
 bin/sensorhubservice
 lib/libsensorhub.so
 lib/libsensorhubservice.so
-lib/hw/sensorhubs.universal5420.so
-lib/hw/sensors.universal5420.so:lib/sensors.universal5420.so
+lib/hw/sensorhubs.universal5420.so:vendor/lib/hw/sensorhubs.universal5420
+lib/hw/sensors.universal5420.so:vendor/lib/hw/sensors.universal5420.so
 lib/libsensirion_h_3.so
 
 # WiFi - Firmware
