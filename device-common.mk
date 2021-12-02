@@ -31,9 +31,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     init.target.rc
 
-# AdvancedDisplay (MDNIE)
-PRODUCT_PACKAGES += \
-    AdvancedDisplay 
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -71,7 +68,6 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-libshim_dmitry_gps \
     libshim_atomic \
     libcutils_shim \
     libshim_binder
@@ -80,10 +76,7 @@ libshim_dmitry_gps \
  PRODUCT_PACKAGES += \
      macloader
  
-# SamsungDoze
-PRODUCT_PACKAGES += \
-    SamsungDoze 
-     
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gps.xml \
